@@ -16,8 +16,8 @@ a beam trawl survey, rather than from the Internation Bottom Trawl Survey (IBTS)
 This function cleans up datras data uploaded into R, for example using the get_datras_data function.
 DATRAS data is typically messy and gathers information collected using different sampling
 protocols (gear type for instance). Analysing data across surveys without this cleaning step
-is therefore unadvisable. \code{clean_data_datras} conserves the bulk
-of the upoloaded data but exclude problematic observations.
+is therefore unadvisable. \code{clean_data_datras} runs a basic clean
+of the uploaded data (see Details).
 }
 \details{
 The majority of surveys on DATRAS are IBTS surveys. There are consistent in sampling protocol

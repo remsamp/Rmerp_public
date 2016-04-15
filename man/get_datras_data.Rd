@@ -17,7 +17,7 @@ get_datras_data(whatinfo, survey, year, quarter)
 \item{quarter}{is a character variable for the quarter wanted}
 }
 \description{
-This function uploads data from one quarter and one year at a time, for a given survey.
+This function uploads DATRAS data from one quarter and one year at a time, for a given survey.
 Several other tools are available to the R user to perform this task, including
 the DATRAS R package. A more sophisticated approach has been developed recently by Scott Large
 and is available at http://www.ices.dk/marine-data/Documents/DATRAS/DATRAS_R.pdf.

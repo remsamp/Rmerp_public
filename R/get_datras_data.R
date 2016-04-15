@@ -1,6 +1,6 @@
 #' Function to upload DATRAS survey data into R
 #'
-#' This function uploads data from one quarter and one year at a time, for a given survey.
+#' This function uploads DATRAS data from one quarter and one year at a time, for a given survey.
 #' Several other tools are available to the R user to perform this task, including
 #' the DATRAS R package. A more sophisticated approach has been developed recently by Scott Large
 #' and is available at http://www.ices.dk/marine-data/Documents/DATRAS/DATRAS_R.pdf.

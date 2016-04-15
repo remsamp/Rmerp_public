@@ -3,8 +3,8 @@
 #' This function cleans up datras data uploaded into R, for example using the get_datras_data function.
 #' DATRAS data is typically messy and gathers information collected using different sampling
 #' protocols (gear type for instance). Analysing data across surveys without this cleaning step
-#' is therefore unadvisable. \code{clean_data_datras} conserves the bulk
-#' of the upoloaded data but exclude problematic observations.
+#' is therefore unadvisable. \code{clean_data_datras} runs a basic clean 
+#' of the uploaded data (see Details).
 #' 
 #' The majority of surveys on DATRAS are IBTS surveys. There are consistent in sampling protocol
 #' from 1980 onwards. Among the other surveys only the English Beam Trawl survey have a consistent
