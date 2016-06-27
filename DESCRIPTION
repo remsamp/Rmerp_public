@@ -11,5 +11,6 @@ Imports:
     RCurl,
     XML,
     ggplot2,
-    ggmap
+    ggmap,
+    SPARQL
 RoxygenNote: 5.0.1
