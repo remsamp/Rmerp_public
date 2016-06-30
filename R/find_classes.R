@@ -24,11 +24,11 @@ find_classes <- function(nerc = TRUE, instances = FALSE){
   qres_properties <- SPARQL(url = endpoint, query = myquery)
   
   
-  myquery <- "SELECT DISTINCT ?properties (COUNT(?properties) AS ?pTotal)
-  WHERE{
-  ?s ?properties ?o .}
-  GROUP BY ?properties
-  ORDER BY DESC(?pTotal)"
+  # myquery <- "SELECT DISTINCT ?properties (COUNT(?properties) AS ?pTotal)
+  # WHERE{
+  # ?s ?properties ?o .}
+  # GROUP BY ?properties
+  # ORDER BY DESC(?pTotal)"
   
     
   # what classes are used?
@@ -51,7 +51,7 @@ find_classes <- function(nerc = TRUE, instances = FALSE){
 
   # get all instances for each of the classes?
   if(instances){
-  	nbclasses <- length(qd$results)
+  	nbclasses <- length(qres_classes$results)
   	instances <- sapply(c(1:nbclasses), function(i){
   		runquery(qres_classes$results[i])
   	})		
