@@ -1,3 +1,22 @@
+#' Map diversity on lattice
+#'
+#' This functions subsets data
+#' 
+#'  
+#' \code{grid_diversity} merges 4 of the tables together.
+#' The database itself is on Strathcloud in module1/data
+#' and needs to be downloaded on the user's computer.
+#' 
+#' @param path_to_manuela is the path to the local
+#' @param path_to_manuela is the path to the local
+#' @param path_to_manuela is the path to the local
+#' @param path_to_manuela is the path to the local
+#' @param path_to_manuela is the path to the local
+#' 
+#' @examples
+#' manuela <- manueladb_to_table("~/manuela")
+#' class(manuela)
+
 grid_diversity <- function(mydata, taxonomic_level, myresolution, myzoom, lat_centre = NULL, lon_centre = NULL){
   # mydata <- allthedata
   # myresolution <- 0.5
@@ -40,6 +59,3 @@ grid_diversity <- function(mydata, taxonomic_level, myresolution, myzoom, lat_ce
     scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
   return(list(gridded_data = dat, myplot = p))
 }
-
-# I can have a wrapper for this that would allow subsetting for a certain taxa
-# for instance, all genus within superclass Pisces. 

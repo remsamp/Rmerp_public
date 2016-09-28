@@ -5,9 +5,9 @@
 
 # to get the actual data we need to use the function ncvar_get(dat, varid = "BST")
 # makes more sense to get BST here since it is demersal communities
-ersem_coord <- expand.grid(dat_temp$var$T$dim[[1]]$vals, dat_temp$var$T$dim[[2]]$vals)
-ersem_lon <- dat_temp$var$T$dim[[1]]$vals
-ersem_lat <- dat_temp$var$T$dim[[2]]$vals
+# ersem_coord <- expand.grid(dat_temp$var$T$dim[[1]]$vals, dat_temp$var$T$dim[[2]]$vals)
+# ersem_lon <- dat_temp$var$T$dim[[1]]$vals
+# ersem_lat <- dat_temp$var$T$dim[[2]]$vals
 
 # dim(ncvar_get(dat_temp, varid = "T"))
 # ersem_temp_list <- vector("list", length = 275)
@@ -24,10 +24,10 @@ ersem_lat <- dat_temp$var$T$dim[[2]]$vals
 # > range(dat_temp$var$T$dim[[2]]$vals). 224 steps so a point every 0.11
 # [1] 40.11111 64.88889
 # jan 1991 to nov 2013 (month 1 to 275)
-lon <- -7
-lat <- 49.5
-year <- 1997
-month <- 8
+# lon <- -7
+# lat <- 49.5
+# year <- 1997
+# month <- 8
 match_ersem_temp <- function(lon, lat, year, month){
   step <- 0.2
   nbmonth <- ((year - 1990 - 1) * 12 + month)
@@ -41,45 +41,45 @@ match_ersem_temp <- function(lon, lat, year, month){
 
 
 
-library(lubridate)
-unicorn$date <- as.character(unicorn$date)
-unicorn$month <- sapply(c(1:nrow(unicorn)), function (x) strsplit(unicorn$date[x], split = "/", fixed = T)[[1]][2])
-unicorn$year <- as.numeric(sapply(c(1:nrow(unicorn)), function (x) strsplit(unicorn$date[x], split = "/", fixed = T)[[1]][3]))
-unicorn$year[unicorn$year > 90] <- 1900 + unicorn$year[unicorn$year > 90]
-unicorn$year[unicorn$year < 50] <- 2000 + unicorn$year[unicorn$year < 50]
-unicorn$surface_temp <- rep(NA, nrow(unicorn))
+# library(lubridate)
+# unicorn$date <- as.character(unicorn$date)
+# unicorn$month <- sapply(c(1:nrow(unicorn)), function (x) strsplit(unicorn$date[x], split = "/", fixed = T)[[1]][2])
+# unicorn$year <- as.numeric(sapply(c(1:nrow(unicorn)), function (x) strsplit(unicorn$date[x], split = "/", fixed = T)[[1]][3]))
+# unicorn$year[unicorn$year > 90] <- 1900 + unicorn$year[unicorn$year > 90]
+# unicorn$year[unicorn$year < 50] <- 2000 + unicorn$year[unicorn$year < 50]
+# unicorn$surface_temp <- rep(NA, nrow(unicorn))
 # coord <- expand.grid(dat$var$SBT$dim[[1]]$vals, dat$var$SBT$dim[[2]]$vals)
 
 # massive amount of data in obis_dat but not so many unique lat, lon and dates combination
-unicorn$ref <- paste(unicorn$year, unicorn$month, unicorn$whichlat, unicorn$whichlon, sep = "_")
-list_ref <- levels(factor(unicorn$ref))
-# bottom_temp <- rep(NA, length(list_ref))
-surface_temp <- rep(NA, length(list_ref))
+# unicorn$ref <- paste(unicorn$year, unicorn$month, unicorn$whichlat, unicorn$whichlon, sep = "_")
+# list_ref <- levels(factor(unicorn$ref))
+# # bottom_temp <- rep(NA, length(list_ref))
+# surface_temp <- rep(NA, length(list_ref))
 # 
 # checking <- as.numeric(sapply(c(1:length(list_ref)), function (x) strsplit(list_ref[x], split = "_")[[1]][1]))
 # idx <- which(checking >= 1991 & checking <= 2013)
 
 
-for(u in 1:length(list_ref))
-{
-  #   # choose year and get the corresponding data
-  # u <- 1
-  elements <- strsplit(list_ref[u], split = "_")[[1]]
-  myear <- as.numeric(elements[1])
-  mymonth <- as.numeric(elements[2])
-  if(myear >= 1991 & myear <= 2013){
-    myear1 <- myear - 1990
-    # dat <- nc_open(list.files[myear1])
-    
-    # find the appropriate day
-    mynbdays <- as.numeric(elements[2])
-    temp_r <- ncvar_get(dat_temp, varid = "T")[, , mynbdmonths]
-    
-    # find the appropriate locations
-    mylat <- as.numeric(elements[3])
-    mylon <- as.numeric(elements[4])
-    # bottom_temp[idx[u]] <- temp_r[mylon, mylat]
-    surface_temp[idx[u]] <- temp_r_surface[mylon, mylat]
-  }
-  print(u)
-}
+# for(u in 1:length(list_ref))
+# {
+#   #   # choose year and get the corresponding data
+#   # u <- 1
+#   elements <- strsplit(list_ref[u], split = "_")[[1]]
+#   myear <- as.numeric(elements[1])
+#   mymonth <- as.numeric(elements[2])
+#   if(myear >= 1991 & myear <= 2013){
+#     myear1 <- myear - 1990
+#     # dat <- nc_open(list.files[myear1])
+#     
+#     # find the appropriate day
+#     mynbdays <- as.numeric(elements[2])
+#     temp_r <- ncvar_get(dat_temp, varid = "T")[, , mynbdmonths]
+#     
+#     # find the appropriate locations
+#     mylat <- as.numeric(elements[3])
+#     mylon <- as.numeric(elements[4])
+#     # bottom_temp[idx[u]] <- temp_r[mylon, mylat]
+#     surface_temp[idx[u]] <- temp_r_surface[mylon, mylat]
+#   }
+#   print(u)
+# }

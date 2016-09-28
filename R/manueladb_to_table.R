@@ -15,7 +15,8 @@
 #' copy of the database on the user's computer.  
 #' 
 #' @examples
-#' data(datras_surveys)
+#' manuela <- manueladb_to_table("~/manuela")
+#' class(manuela)
 
 manueladb_to_table <- function(path_to_manuela){
   con <- dbConnect(RSQLite::SQLite(), path_to_manuela)
@@ -31,8 +32,5 @@ manueladb_to_table <- function(path_to_manuela){
   manuela <- left_join(manuela, list_data$stations, by = c("station_id" = "id"))
   manuela <- left_join(list_data$counts, manuela, by = c("slice_id" = "id"))
   
-  manuela
+  return(manuela)
 }
-
-# I can have a wrapper for this that would allow subsetting for a certain taxa
-# for instance, all genus within superclass Pisces. 

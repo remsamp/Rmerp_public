@@ -1,11 +1,27 @@
-# this is to match in space and time environmental data with biological records
-# this is a way to match 
+#' Match biotic and abiotic data in space
+#'
+#' The function takes the meiofauna database MANUELA
+#' and use dplyr to merge its tables into a data.frame and/or csv file.
+#' There are 14 tables in total. the first 4 concern abiotic measurements 
+#' 5 and 6 have biotic data, with names, count, length, width and biomass
 
-# mydata <- data.frame(lon = runif(1000, min = -10, max = 10), lat = runif(1000, min = 40, max = 60), temperature = runif(1000, min = 10, max = 20))
+#' do I need to disconnect the link between R and the database?
+
+#' \code{match_env} merges 4 of the tables together.
+#' The database itself is on Strathcloud in module1/data
+#' and needs to be downloaded on the user's computer.
+#' 
+#' @param env_lon is 
+#' @param env_lat is 
+#' @param bio_lon is 
+#' @param bio_lat is 
+#' @param env_variable is   
+#' 
+#' @examples
+#' data(datras_surveys)
+
 match_env <- function(env_lon, env_lat, bio_lon, bio_lat, env_variable = NULL){
   alldist <- sapply(c(1:length(env_lon)), function(i) dist(rbind(c(env_lon[i], env_lat[i]), c(bio_lon, bio_lat))))
   if(is.null(env_variable)) return(which.min(alldist))
   else{return(env_variable[which.min(alldist)])}
 }
-# match_env(mydata$lon, mydata$lat, -7, 49.5)
-# match_env(mydata$lon, mydata$lat, -7, 49.5, mydata$temperature)
