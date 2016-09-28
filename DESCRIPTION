@@ -12,5 +12,6 @@ Imports:
     XML,
     ggplot2,
     ggmap,
-    SPARQL
+    SPARQL,
+    RSQLite
 RoxygenNote: 5.0.1
