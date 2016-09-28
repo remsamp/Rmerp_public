@@ -1,4 +1,23 @@
-temperature_distr_obis <- function(fgroup = NULL, species = NULL, returndata = F, bin_min = -10, bin_max = 40, bwidth = 1){
+#' Plot species thermal niche
+#'
+#' The function takes the meiofauna database MANUELA
+#' and use dplyr to merge its tables into a data.frame and/or csv file.
+#' There are 14 tables in total. the first 4 concern abiotic measurements 
+#' 5 and 6 have biotic data, with names, count, length, width and biomass
+
+#' do I need to disconnect the link between R and the database?
+
+#' \code{manueladb_to_table} merges 4 of the tables together.
+#' The database itself is on Strathcloud in module1/data
+#' and needs to be downloaded on the user's computer.
+#' 
+#' @param path_to_manuela is the path to the local
+#' copy of the database on the user's computer.  
+#' 
+#' @examples
+#' manuela <- manueladb_to_table("~/manuela")
+#' class(manuela)
+temperature_distr <- function(fgroup = NULL, species = NULL, returndata = F, bin_min = -10, bin_max = 40, bwidth = 1){
   # species = "Calanus finmarchicus"
   if(is.null(fgroup) & is.null(species)){
     print("The function requires a functional group or species name!")

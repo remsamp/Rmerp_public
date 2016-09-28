@@ -11,11 +11,11 @@
 #' The database itself is on Strathcloud in module1/data
 #' and needs to be downloaded on the user's computer.
 #' 
-#' @param env_lon is 
-#' @param env_lat is 
-#' @param bio_lon is 
-#' @param bio_lat is 
-#' @param env_variable is   
+#' @param env_lon is the longitude of the abiotic variable
+#' @param env_lat is the latitude of the abiotic variable
+#' @param bio_lon is the longitude of the biotic variable
+#' @param bio_lat is the latitude of the biotic variable
+#' @param env_variable is the value of the abiotic variable
 #' 
 #' @examples
 #' data(datras_surveys)

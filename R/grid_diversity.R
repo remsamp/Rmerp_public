@@ -1,6 +1,6 @@
 #' Map diversity on lattice
 #'
-#' This functions subsets data
+#' This functions maps the diversity of 
 #' 
 #'  
 #' \code{grid_diversity} merges 4 of the tables together.
@@ -18,10 +18,7 @@
 #' class(manuela)
 
 grid_diversity <- function(mydata, taxonomic_level, myresolution, myzoom, lat_centre = NULL, lon_centre = NULL){
-  # mydata <- allthedata
-  # myresolution <- 0.5
-  # taxonomic_level <- "order"
-  
+
   breakx <- seq(min(floor(mydata$lon)), max(ceiling(mydata$lon)), by = myresolution)
   breaky <- seq(min(floor(mydata$lat)), max(ceiling(mydata$lat)), by = myresolution)
   mydata$cellx <- cut(mydata$lon, breaks = breakx, labels = breakx[1:(length(breakx)-1)])
