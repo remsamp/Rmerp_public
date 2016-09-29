@@ -55,7 +55,7 @@ grid_data <- function(mydata, myresolution, myzoom, lat_centre = NULL, lon_centr
   }
   
   p <- ggmap(mymap)
-  p <- p + geom_tile(data = dat, aes(x = (x0 + x1) / 2, y = (y0 + y1) / 2, width = myresolution, height = myresolution, fill = mygeocounts, group = id, alpha = alpha)))) +
+  p <- p + geom_tile(data = dat, aes(x = (x0 + x1) / 2, y = (y0 + y1) / 2, width = myresolution, height = myresolution, fill = mygeocounts, group = id)) +
   scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
   return(list(gridded_data = dat, myplot = p))
 }
