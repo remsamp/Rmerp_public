@@ -14,10 +14,10 @@
 #' @param path_to_manuela is the path to the local
 #' 
 #' @examples
-#' manuela <- manueladb_to_table("~/manuela")
-#' class(manuela)
+#' somedata <- manueladb_to_table("~/manuela")
+#' somedata
 
-grid_diversity <- function(mydata, taxonomic_level, myresolution, myzoom, lat_centre = NULL, lon_centre = NULL){
+grid_diversity <- function(mydata, taxonomic_level, myresolution = 0.5, myzoom = 7, lat_centre = NULL, lon_centre = NULL){
 
   breakx <- seq(min(floor(mydata$lon)), max(ceiling(mydata$lon)), by = myresolution)
   breaky <- seq(min(floor(mydata$lat)), max(ceiling(mydata$lat)), by = myresolution)

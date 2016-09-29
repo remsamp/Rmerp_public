@@ -25,7 +25,7 @@
 #' justchecking$myplot
 
 # function to grid obis data extracted using occurrence function
-grid_data <- function(mydata, myresolution, myzoom, lat_centre = NULL, lon_centre = NULL){
+grid_data <- function(mydata, myresolution = 0.5, myzoom = 7, lat_centre = NULL, lon_centre = NULL){
   breakx <- seq(min(floor(mydata$lon)), max(ceiling(mydata$lon)), by = myresolution)
   breaky <- seq(min(floor(mydata$lat)), max(ceiling(mydata$lat)), by = myresolution)
   cellx <- cut(mydata$lon, breaks = breakx, labels = breakx[1:(length(breakx)-1)])
