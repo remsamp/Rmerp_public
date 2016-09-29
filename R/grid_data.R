@@ -25,7 +25,7 @@
 #' justchecking$myplot
 
 # function to grid obis data extracted using occurrence function
-grid_data <- function(mydata, myresolution, myzoom){
+grid_data <- function(mydata, myresolution, myzoom, lat_centre = NULL, lon_centre = NULL){
   breakx <- seq(min(floor(mydata$lon)), max(ceiling(mydata$lon)), by = myresolution)
   breaky <- seq(min(floor(mydata$lat)), max(ceiling(mydata$lat)), by = myresolution)
   cellx <- cut(mydata$lon, breaks = breakx, labels = breakx[1:(length(breakx)-1)])
@@ -47,9 +47,16 @@ grid_data <- function(mydata, myresolution, myzoom){
   dat$alpha[dat$mygeocounts != 0] <- 0.25
   dat$myresolution <- rep(myresolution, nrow(dat))
   
-  mymap <- get_map(location=c(mean(mydata$lon),mean(mydata$lat)),"satellite",zoom=myzoom,scale="auto",col="bw")
+  if(is.null(lat_centre)){
+    mymap <- get_map(location=c(mean(mydata$lon),mean(mydata$lat)),"satellite",zoom=myzoom,scale="auto")
+  }
+  else{
+    mymap <- get_map(location=c(lon_centre,lat_centre),"satellite",zoom=myzoom,scale="auto")
+  }
+  
   p <- ggmap(mymap)
-  p <- p + geom_tile(data = dat, aes(x = (x0 + x1) / 2, y = (y0 + y1) / 2, width = myresolution, height = myresolution, fill = mygeocounts, group = id, alpha = alpha))
+  p <- p + geom_tile(data = dat, aes(x = (x0 + x1) / 2, y = (y0 + y1) / 2, width = myresolution, height = myresolution, fill = mygeocounts, group = id, alpha = alpha)))) +
+  scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
   return(list(gridded_data = dat, myplot = p))
 }
 
