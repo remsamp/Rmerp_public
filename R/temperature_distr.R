@@ -37,9 +37,7 @@ temperature_distr <- function(fgroup = NULL, species = NULL, returndata = F, bin
     #   labs(x = "Surface temperature", y = "Records") +
     #   ylim(c(ybottom,ytop))
     temp_plot <- temp_plot %>%
-      ggplot(data = .) + geom_density(aes(surface_temp)), colour = "black", fill = "grey") + 
-      theme_grey() +
-      labs(x = "Surface temperature", y = "Records")
+      ggplot(data = .) + geom_density(aes(surface_temp)), colour = "black", fill = "grey") 
   }
   
   if(!is.null(species)){
@@ -51,9 +49,7 @@ temperature_distr <- function(fgroup = NULL, species = NULL, returndata = F, bin
     #   labs(x = "Surface temperature", y = "Records") +
     #   ylim(c(ybottom,ytop))
     temp_plot <- temp_plot %>%
-       ggplot(data = .) + geom_density(aes(surface_temp)), colour = "black", fill = "grey") + 
-       theme_grey() +
-       labs(x = "Surface temperature", y = "Records") 
+       ggplot(data = .) + geom_density(aes(surface_temp)), colour = "black", fill = "grey") 
   }
   return(list(plot = temp_plot))
 }
