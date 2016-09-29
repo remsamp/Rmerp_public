@@ -41,10 +41,8 @@ grid_data <- function(mydata, myresolution, myzoom, lat_centre = NULL, lon_centr
   # match mycoord with dat$mycoord
   idx <- match(dat$mycoord, names(mygeocounts))
   dat$mygeocounts <- as.numeric(mygeocounts)[idx]
-  dat$mygeocounts[is.na(dat$mygeocounts)] <- 0
+  # dat$mygeocounts[is.na(dat$mygeocounts)] <- 0
   dat$id <- c(1: nrow(dat))
-  dat$alpha <- rep(0, nrow(dat))
-  dat$alpha[dat$mygeocounts != 0] <- 0.25
   dat$myresolution <- rep(myresolution, nrow(dat))
   
   if(is.null(lat_centre)){
