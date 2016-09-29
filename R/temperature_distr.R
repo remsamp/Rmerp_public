@@ -17,7 +17,7 @@
 #' @examples
 #' manuela <- manueladb_to_table("~/manuela")
 #' class(manuela)
-temperature_distr <- function(fgroup = NULL, species = NULL, returndata = F, bin_min = -10, bin_max = 40, bwidth = 1){
+temperature_distr <- function(fgroup = NULL, species = NULL, returndata = F, bin_min = -10, bin_max = 40, bwidth = 1, ytop = 1000, ybottom = 0){
   # species = "Calanus finmarchicus"
   if(is.null(fgroup) & is.null(species)){
     print("The function requires a functional group or species name!")
@@ -34,7 +34,8 @@ temperature_distr <- function(fgroup = NULL, species = NULL, returndata = F, bin
     temp_plot <- temp_plot %>%
       ggplot(data = .) + geom_histogram(aes(surface_temp), breaks = seq(bin_min, bin_max, by = bwidth), colour = "black", fill = "grey") + 
       theme_grey() +
-      labs(x = "Surface temperature", y = "Records")
+      labs(x = "Surface temperature", y = "Records") +
+      ylim(c(ybottom,ytop))
   }
   
   if(!is.null(species)){
@@ -43,7 +44,8 @@ temperature_distr <- function(fgroup = NULL, species = NULL, returndata = F, bin
     temp_plot <- temp_plot %>%
       ggplot(data = .) + geom_histogram(aes(surface_temp), breaks = seq(bin_min, bin_max, by = bwidth), colour = "black", fill = "grey") + 
       theme_grey() +
-      labs(x = "Surface temperature", y = "Records")
+      labs(x = "Surface temperature", y = "Records") +
+      ylim(c(ybottom,ytop))
   }
   return(list(plot = temp_plot))
 }
