@@ -29,20 +29,20 @@ grid_diversity <- function(mydata, taxonomic_level, myresolution = 0.5, myzoom =
   mydata <- mydata[!duplicated(mydata$ref), ]
   
   mycoord <- paste(mydata$cellx, mydata$celly, sep = "_")
-  mygeocounts <- table(mycoord)
+  Records <- table(mycoord)
   
   inter <- expand.grid(breakx, breaky)
   dat <- data.frame(x0 = inter[, 1], x1 = inter[, 1] + 1, y0 = inter[, 2], y1 = inter[, 2] + 1)
   dat$mycoord <- paste(dat$x0, dat$y0, sep = "_")
-  dat$mygeocounts <- rep(NA, nrow(dat))
+  dat$Records <- rep(NA, nrow(dat))
   
   # match mycoord with dat$mycoord
-  idx <- match(dat$mycoord, names(mygeocounts))
-  dat$mygeocounts <- as.numeric(mygeocounts)[idx]
+  idx <- match(dat$mycoord, names(Records))
+  dat$Records <- as.numeric(Records)[idx]
   # dat$taxa_number[is.na(dat$taxa_number)] <- NULL
   dat$id <- c(1: nrow(dat))
   # dat$alpha <- rep(0, nrow(dat))
-  # dat$alpha[dat$mygeocounts != 0] <- 0.25
+  # dat$alpha[dat$Records != 0] <- 0.25
   dat$myresolution <- rep(myresolution, nrow(dat))
   
   if(is.null(lat_centre)){
@@ -52,9 +52,9 @@ grid_diversity <- function(mydata, taxonomic_level, myresolution = 0.5, myzoom =
      mymap <- get_map(location=c(lon_centre,lat_centre),"satellite",zoom=myzoom,scale="auto")
   }
   p <- ggmap(mymap)
-  p <- p + geom_tile(data = dat, aes(x = (x0 + x1) / 2, y = (y0 + y1) / 2, width = myresolution, height = myresolution, group = id, fill = mygeocounts)) +
+  p <- p + geom_tile(data = dat, aes(x = (x0 + x1) / 2, y = (y0 + y1) / 2, width = myresolution, height = myresolution, group = id, fill = Records)) +
     scale_fill_gradient(low = "yellow", high = "red", na.value = NA) +
-    theme(axis.text = element_text(size = 14), axis.title = element_text(size = 18), legend.title = element_text(title = "Records")) +
+    theme(axis.text = element_text(size = 14), axis.title = element_text(size = 18)) +
     labs(x= "Longitude", y = "Latitude")
   return(list(gridded_data = dat, myplot = p))
 }
