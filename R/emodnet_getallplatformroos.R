@@ -11,8 +11,7 @@
 #' @param roosid is a character variable "1" to "6". 
 #' BOOS is Baltic, NOOS is north West European Shelves ("3"), IBI is Irland Biscay Iberia, MOON mediterranean
 
-getallplatformroos <- function(roosid){
-  # roosid <- 3
+emodnet_getallplatformroos <- function(roosid){
   myurl <- paste("http://www.emodnet-physics.eu/Map/service/WSEmodnet2.aspx?q=GetAllPlatformsRoos&RoosID=",roosid,"&Format=txt/xml", sep = "")
   inter <- getURL(myurl)
   inter1 <- gsub(pattern = "utf-16", replacement = "utf-8", x = inter, fixed = TRUE)# use exact matching
