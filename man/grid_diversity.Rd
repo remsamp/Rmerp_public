@@ -2,32 +2,36 @@
 % Please edit documentation in R/grid_diversity.R
 \name{grid_diversity}
 \alias{grid_diversity}
-\title{Map diversity on lattice}
+\title{Function to grid geolocated, taxonomically-defined observations on a map}
 \usage{
-grid_diversity(mydata, taxonomic_level, myresolution, myzoom,
+grid_diversity(mydata, taxonomic_level, myresolution = 0.5, myzoom = 7,
   lat_centre = NULL, lon_centre = NULL)
 }
 \arguments{
-\item{path_to_manuela}{is the path to the local}
+\item{mydata}{is an R data.frame. It contains two columns that must be named lat and lon, lon corresponding to each observations.
+mydata must have the right column names for the function to work. See example on how to do that.}
 
-\item{path_to_manuela}{is the path to the local}
+\item{taxonomic_level}{is the taxonomic resolution for gridding. Possible choices are
+kingdom, phylum, class, order, family, genus and species}
 
-\item{path_to_manuela}{is the path to the local}
+\item{myresolution}{is the size of the cells the data is to be aggregated over}
 
-\item{path_to_manuela}{is the path to the local}
+\item{myzoom}{is the zoom to be applied to plot the gridded data on ggmap map}
 
-\item{path_to_manuela}{is the path to the local}
+\item{lat_centre}{is the user-defined latitude the map will be centred on. Default to mean 
+latitude of observations.}
+
+\item{lon_centre}{is the user-defined longitude the map will be centred on. Default to mean 
+longitude of observations.}
+}
+\value{
+\code{grid_diversity} returns a data frame containing the number of unique 
+taxonomic group per cell. The taxonomic resolution is defined by the user.
 }
 \description{
-This functions subsets data
-}
-\details{
-\code{grid_diversity} merges 4 of the tables together.
-The database itself is on Strathcloud in module1/data
-and needs to be downloaded on the user's computer.
-}
-\examples{
-manuela <- manueladb_to_table("~/manuela")
-class(manuela)
+Data portals such as OBIS typically return tables of geolocated observations upon requests.
+When combined with packages such as taxizesoap the taxonomy of all occurring species
+can be added. From there a common task is to map the number of unique species/genus/family (or
+other taxonomic group) on a lattice.
 }
 

@@ -20,17 +20,14 @@ get_datras_data(whatinfo, survey, year, quarter)
 This function uploads DATRAS data from one quarter and one year at a time, for a given survey.
 Several other tools are available to the R user to perform this task, including
 the DATRAS R package. A more sophisticated approach has been developed recently by Scott Large
-and is available at http://www.ices.dk/marine-data/Documents/DATRAS/DATRAS_R.pdf.
-Currently this code only exists as a pdf and would require a complete
-re-write as an R script.
+and is available in R package rICES at https://github.com/ices-tools-dev/rICES.
 }
 \details{
-\code{get_datras_data} achieves the same result as Scott Large's code,
+\code{get_datras_data} achieves the same result as rICES,
 but leaves the task of aggregating surveys (if multiple surveys are uploaded) to the user. 
-Uploading the data is a slow process and partly depends on internet speed. Parallelising 
-the code as done by Scott Large will potentially speed things up, although available
-bandwith will always be a problem. Note that a list of available surveys, years and quarters is stored 
-in the data.frame "datras_surveys", which can be looked up using data(datras_surveys)
+rICES makes the most of multi-core computers and will likely be faster
+in downloading data for many quarters and years, but may be a little more
+complex to use for an R beginner.
 }
 \examples{
 data(datras_surveys)

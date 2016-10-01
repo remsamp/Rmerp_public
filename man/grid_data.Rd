@@ -2,9 +2,10 @@
 % Please edit documentation in R/grid_data.R
 \name{grid_data}
 \alias{grid_data}
-\title{Function to grid and plot geolocated observations on a map}
+\title{Function to grid geolocated observations on a map}
 \usage{
-grid_data(mydata, myresolution, myzoom)
+grid_data(mydata, myresolution = 0.5, myzoom = 7, lat_centre = NULL,
+  lon_centre = NULL)
 }
 \arguments{
 \item{mydata}{is an R data.frame. It contains two columns that must be named lat and lon, lon corresponding to each observations.
@@ -13,6 +14,12 @@ mydata must have the right column names for the function to work. See example on
 \item{myresolution}{is the size of the cells the data is to be aggregated over}
 
 \item{myzoom}{is the zoom to be applied to plot the gridded data on ggmap map}
+
+\item{lat_centre}{is the user-defined latitude the map will be centred on. Default to mean 
+latitude of observations.}
+
+\item{lon_centre}{is the user-defined longitude the map will be centred on. Default to mean 
+longitude of observations.}
 }
 \value{
 \code{grid_data} returns a data frame containing the number of observations per cell.
