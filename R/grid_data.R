@@ -55,7 +55,7 @@ grid_data <- function(mydata, myresolution = 0.5, myzoom = 7, lat_centre = NULL,
   p <- ggmap(mymap)
   p <- p + geom_tile(data = dat, aes(x = (x0 + x1) / 2, y = (y0 + y1) / 2, width = myresolution, height = myresolution, fill = mygeocounts, group = id)) +
   scale_fill_gradient(low = "yellow", high = "red", na.value = NA) +
-    theme(legend.position = 'none', axis.text = element_text(size = 14), axis.title = element_text(size = 18), legend.text = element_text("Records")) +
+    theme(axis.text = element_text(size = 14), axis.title = element_text(size = 18), legend.text = element_text("Records")) +
     labs(x= "Longitude", y = "Latitude")
   return(list(gridded_data = dat, myplot = p))
 }
