@@ -3,13 +3,13 @@
 #' This function uploads EMODnet metadata about both the individual parameters
 #' and the parameter groups for which data is available. 
 #' 
-#' \code{getallparam} produces a list of parameters data can be pulled out for.
+#' \code{getallparam} produces a list of parameters for which data is available.
 #' It can be used in tandem with other functions that list all stations 
 #' (potentially within a given ecoregion). The function takes no parameter and
 #' gives an exhaustive list of parameters. 
 #' 
 
-getallparam <- function(){
+emodnet_getallparam <- function(){
   myurl <- "http://www.emodnet-physics.eu/map/Service/WSEmodnet2.aspx?q=GetAllParameters&Format=txt/xml"
   inter <- getURL(myurl)# erroneous encoding
   inter1 <- gsub(pattern = "utf-16", replacement = "utf-8", x = inter, fixed = TRUE)# use exact matching
