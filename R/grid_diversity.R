@@ -1,22 +1,26 @@
-#' Map diversity on lattice
+#' Function to grid geolocated, taxonomically-defined observations on a map
 #'
-#' This functions maps the diversity of 
+#' Data portals such as OBIS typically return tables of geolocated observations upon requests.
+#' When combined with packages such as taxizesoap the taxonomy of all occurring species
+#' can be added. From there a common task is to map the number of unique species/genus/family (or
+#' other taxonomic group) on a lattice.
 #' 
-#'  
-#' \code{grid_diversity} merges 4 of the tables together.
-#' The database itself is on Strathcloud in module1/data
-#' and needs to be downloaded on the user's computer.
+#' @return \code{grid_diversity} returns a data frame containing the number of unique 
+#' taxonomic group per cell. The taxonomic resolution is defined by the user.
 #' 
-#' @param path_to_manuela is the path to the local
-#' @param path_to_manuela is the path to the local
-#' @param path_to_manuela is the path to the local
-#' @param path_to_manuela is the path to the local
-#' @param path_to_manuela is the path to the local
 #' 
-#' @examples
-#' somedata <- manueladb_to_table("~/manuela")
-#' somedata
-
+#' @param mydata is an R data.frame. It contains two columns that must be named lat and lon, lon corresponding to each observations.
+#' mydata must have the right column names for the function to work. See example on how to do that.
+#' @param myresolution is the size of the cells the data is to be aggregated over
+#' @param myzoom is the zoom to be applied to plot the gridded data on ggmap map
+#' @param taxonomic_level is the taxonomic resolution for gridding. Possible choices are
+#' kingdom, phylum, class, order, family, genus and species
+#' @param lon_centre is the user-defined longitude the map will be centred on. Default to mean 
+#' longitude of observations.
+#' @param lat_centre is the user-defined latitude the map will be centred on. Default to mean 
+#' latitude of observations.
+#' 
+#' 
 grid_diversity <- function(mydata, taxonomic_level, myresolution = 0.5, myzoom = 7, lat_centre = NULL, lon_centre = NULL){
 
   breakx <- seq(min(floor(mydata$lon)), max(ceiling(mydata$lon)), by = myresolution)
