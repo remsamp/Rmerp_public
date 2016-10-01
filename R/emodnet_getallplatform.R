@@ -3,11 +3,11 @@
 #' This function uploads EMODnet metadata about the location of stations
 #' as well as the physics parameters that have been monitored at these stations. 
 #' 
-#' \code{getallplatform} produces a list of platform at which data has been monitored.
+#' \code{emodnet_getallplatform} produces a list of platform at which data has been monitored.
 #' The function takes no parameter and gives an exhaustive list of stations. 
 #' 
 
-getallplatform <- function(){
+emodnet_getallplatform <- function(){
   myurl <- "http://www.emodnet-physics.eu/map/Service/WSEmodnet2.aspx?q=GetAllPlatforms&Format=text/xml"
   inter <- getURL(myurl)
   inter1 <- gsub(pattern = "utf-16", replacement = "utf-8", x = inter, fixed = TRUE)# use exact matching
