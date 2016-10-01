@@ -1,15 +1,16 @@
 #' Convert MANUELA to table
 #'
 #' The function takes the meiofauna database MANUELA
-#' and use dplyr to merge its tables into a data.frame and/or csv file.
-#' There are 14 tables in total. the first 4 concern abiotic measurements 
-#' 5 and 6 have biotic data, with names, count, length, width and biomass
-
-#' do I need to disconnect the link between R and the database?
-
-#' \code{manueladb_to_table} merges 4 of the tables together.
+#' and uses dplyr to merge its tables into a data.frame and/or csv file.
+#' There are 14 tables in total, some of them containing 
+#' biotic variables and others abiotic variables.
+#' 
+#' \code{manueladb_to_table} currently merges 4 of the tables together.
+#' The result is a data frame containing all biotic observations
+#' as well as their accompanying spatial and temporal information.
 #' The database itself is on Strathcloud in module1/data
-#' and needs to be downloaded on the user's computer.
+#' and needs to be downloaded on the user's computer. WE HAVE BEEN 
+#' ASKED BY THE DATA PROVIDER TO NOT SHARE IT BEYOND THE MERP COMMUNITY.
 #' 
 #' @param path_to_manuela is the path to the local
 #' copy of the database on the user's computer.  
