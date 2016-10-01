@@ -57,7 +57,7 @@ grid_data <- function(mydata, myresolution = 0.5, myzoom = 7, lat_centre = NULL,
   p <- p + geom_tile(data = dat, aes(x = (x0 + x1) / 2, y = (y0 + y1) / 2, width = myresolution, height = myresolution, fill = Records, group = id)) +
   scale_fill_gradient(low = "yellow", high = "red", na.value = NA) +
     theme(axis.text = element_text(size = 14), axis.title = element_text(size = 18)) +
-    labs(x= "Longitude", y = "Latitude")
+    labs(x= "Longitude", y = "Latitude") + margin(t = 1, b = 2, l = 2, r = 2, unit = "pt")
   return(list(gridded_data = dat, myplot = p))
 }
 
