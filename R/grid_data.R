@@ -1,4 +1,4 @@
-#' Function to grid and plot geolocated observations on a map
+#' Function to grid geolocated observations on a map
 #'
 #' Data portals such as OBIS typically return tables of geolocated observations upon requests.
 #' Gridded data is often used to represent in a synthetic way this type of observations, 
@@ -11,7 +11,10 @@
 #' mydata must have the right column names for the function to work. See example on how to do that.
 #' @param myresolution is the size of the cells the data is to be aggregated over
 #' @param myzoom is the zoom to be applied to plot the gridded data on ggmap map
-#' 
+#' @param lon_centre is the user-defined longitude the map will be centred on. Default to mean 
+#' longitude of observations.
+#' @param lat_centre is the user-defined latitude the map will be centred on. Default to mean 
+#' latitude of observations.
 #' 
 #' @examples
 #' library(robis)
@@ -24,7 +27,6 @@
 #' # plot the data
 #' justchecking$myplot
 
-# function to grid obis data extracted using occurrence function
 grid_data <- function(mydata, myresolution = 0.5, myzoom = 7, lat_centre = NULL, lon_centre = NULL){
   breakx <- seq(min(floor(mydata$lon)), max(ceiling(mydata$lon)), by = myresolution)
   breaky <- seq(min(floor(mydata$lat)), max(ceiling(mydata$lat)), by = myresolution)
@@ -39,10 +41,8 @@ grid_data <- function(mydata, myresolution = 0.5, myzoom = 7, lat_centre = NULL,
   
   dat$Records <- rep(NA, nrow(dat))
   
-  # match mycoord with dat$mycoord
   idx <- match(dat$mycoord, names(Records))
   dat$Records <- as.numeric(Records)[idx]
-  # dat$Records[is.na(dat$Records)] <- 0
   dat$id <- c(1: nrow(dat))
   dat$myresolution <- rep(myresolution, nrow(dat))
   
