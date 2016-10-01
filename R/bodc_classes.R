@@ -9,8 +9,7 @@
 #' we recommand you first check the number of instances in each class, this could take a long time!
 #'
 #' 
-
-find_classes <- function(nerc = TRUE, instances = FALSE){
+bodc_classes <- function(nerc = TRUE, instances = FALSE){
   endpoint <- ifelse(nerc == TRUE, "http://vocab.nerc.ac.uk/sparql/sparql", "http://linked.bodc.ac.uk/sparql/")
   
   # what properties are used?
@@ -23,14 +22,6 @@ find_classes <- function(nerc = TRUE, instances = FALSE){
   ORDER BY ?properties"
   qres_properties <- SPARQL(url = endpoint, query = myquery)
   
-  
-  # myquery <- "SELECT DISTINCT ?properties (COUNT(?properties) AS ?pTotal)
-  # WHERE{
-  # ?s ?properties ?o .}
-  # GROUP BY ?properties
-  # ORDER BY DESC(?pTotal)"
-  
-    
   # what classes are used?
   myquery <- "SELECT DISTINCT ?class
   WHERE{
@@ -39,7 +30,6 @@ find_classes <- function(nerc = TRUE, instances = FALSE){
   ORDER BY ?class"
   
   qres_classes <- SPARQL(url = endpoint, query = myquery)
-  # qd$results
   
   runquery <- function(myclass){
   	myquery <- paste("SELECT DISTINCT ?instances
