@@ -7,31 +7,34 @@
 match_ersem_temp(ersem = NULL, lon, lat, year, month)
 }
 \arguments{
-\item{lon}{is the path to the local}
+\item{ersem}{is the data set containing the ersem temperature data}
 
-\item{lat}{is the path to the local}
+\item{lon}{is the longitude for the observation to match}
 
-\item{year}{is the path to the local}
+\item{lat}{is the latitude for the observation to match}
 
-\item{month}{is the path to the local}
+\item{year}{is the year the observation was recorded}
+
+\item{month}{is the month the observation was recorded}
 }
 \description{
 This functions uses ERSEM sea surface temperature
 and matches it to a user-provided data set of
 geolocated observations. The ERSEM data set is not included
 in the package but can be downloaded freely from opec website
-at https://portal.marineopec.eu/ It is montly data between 
+at https://portal.marineopec.eu/ (see example on how to 
+load the data into R). This is montly data between 
 jan 1991 and november 2013 on a lattice covering a domain 
-between -19.83333  13.00000  and 40.11111 64.88889
-latitude.
-}
-\details{
-\code{grid_diversity} merges 4 of the tables together.
-The database itself is on Strathcloud in module1/data
-and needs to be downloaded on the user's computer.
+between longitudes -19.83333 and 13.00000 and 
+latitudes 40.11111 and 64.88889.
 }
 \examples{
-library(netcdf4)
-
+# Not run: download ersem netcdf4 file and split it 
+# by months (275 between jan 1991 and nov 2013)
+#library(netcdf4)
+#netc_ersem <- nc_open("path_to_ersem_netcdf4_file.nc")
+#myersem <- vector("list", length = dim(netc_ersem)[1])
+#for(i in 1:length(myersem)) myersem[[i]] <- netc_ersem[i, , ] 
+#match_ersem_temp(ersem = myersem, lon = -7, lat = 50, year = 2010, month = 8)
 }
 
