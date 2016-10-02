@@ -3,37 +3,27 @@
 #' This functions uses ERSEM sea surface temperature
 #' and matches it to a user-provided data set of
 #' geolocated observations. The ERSEM data set is not included
-#' in the package but can be downloaded freely from opec data.
-#' A copy is also included in Strathcloud for ease of use. 
+#' in the package but can be downloaded freely from opec website
+#' at https://portal.marineopec.eu/ (see example on how to 
+#' load the data into R). This is montly data between 
+#' jan 1991 and november 2013 on a lattice covering a domain 
+#' between longitudes -19.83333 and 13.00000 and 
+#' latitudes 40.11111 and 64.88889.
 #' 
-#' This is montly data between jan 1991 and november 2013
-#' on a lattice covering a domain 
-#' between -19.83333  13.00000  and 40.11111 64.88889
-#' latitude.
-#' 
-#'  
-#' \code{grid_diversity} merges 4 of the tables together.
-#' The database itself is on Strathcloud in module1/data
-#' and needs to be downloaded on the user's computer.
-#' 
-#' @param lon is the path to the local
-#' @param lat is the path to the local
-#' @param year is the path to the local
-#' @param month is the path to the local
+#' @param ersem is the data set containing the ersem temperature data
+#' @param lon is the longitude for the observation to match
+#' @param lat is the latitude for the observation to match
+#' @param year is the year the observation was recorded
+#' @param month is the month the observation was recorded
 #' 
 #' @examples
-#' library(netcdf4)
-#' 
-#' 
-# > range(dat_temp$var$T$dim[[1]]$vals). 198 steps so a point every 0.167
-# [1] -19.83333  13.00000
-# > range(dat_temp$var$T$dim[[2]]$vals). 224 steps so a point every 0.11
-# [1] 40.11111 64.88889
-# jan 1991 to nov 2013 (month 1 to 275)
-# lon <- -7
-# lat <- 49.5
-# year <- 1997
-# month <- 8
+#' # Not run: download ersem netcdf4 file and split it 
+#' # by months (275 between jan 1991 and nov 2013)
+#' #library(netcdf4)
+#' #netc_ersem <- nc_open("path_to_ersem_netcdf4_file.nc")
+#' #myersem <- vector("list", length = dim(netc_ersem)[1])
+#' #for(i in 1:length(myersem)) myersem[[i]] <- netc_ersem[i, , ] 
+#' #match_ersem_temp(ersem = myersem, lon = -7, lat = 50, year = 2010, month = 8)
 match_ersem_temp <- function(ersem = NULL, lon, lat, year, month){
   if(is.null(ersem)){
     print("The ERSEM dataset is missing! Download it at xxx")
