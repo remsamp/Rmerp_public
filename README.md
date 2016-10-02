@@ -26,11 +26,12 @@ Below is the list of available functions:
 + get\_datras\_data
 + clean\_datras\_data
 + manuela\_to\_table
-+ getallparam
-+ getallplatform
-+ getallplatformroos
-+ find\_classes good doc, need checking, need better name? + bodc\_search\_string
-+ get\_triples
++ emodnet\_getallparam
++ emodnet\_getallplatform
++ emodnet\_getallplatformroos
++ bodc\_classes
++ bodc\_search\_string
++ bodc\_get\_triples
 
 Each function has a help file which can be accessed in R by typing ? followed by the name of the function.
 
