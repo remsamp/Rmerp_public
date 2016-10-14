@@ -4,12 +4,13 @@
 \alias{grid_data}
 \title{Function to grid geolocated observations on a map}
 \usage{
-grid_data(mydata, myresolution = 0.5, myzoom = 7, lat_centre = NULL,
+grid_data(lat, lon, myresolution = 0.5, myzoom = 7, lat_centre = NULL,
   lon_centre = NULL)
 }
 \arguments{
-\item{mydata}{is an R data.frame. It contains two columns that must be named lat and lon, lon corresponding to each observations.
-mydata must have the right column names for the function to work. See example on how to do that.}
+\item{lat}{is a numerical vector of latitudes for the set of observations.}
+
+\item{lon}{is a numerical vector of longitudes for the set of observations.}
 
 \item{myresolution}{is the size of the cells the data is to be aggregated over}
 
@@ -33,9 +34,7 @@ there is no built-in function to go from raw to aggregated data.
 \examples{
 library(robis)
 obs <- occurrence("Gadus morhua", year = 2002)
-myobs <- data.frame(obs$decimalLongitude, obs$decimalLatitude)
-names(myobs) <- c("lon", "lat")
-justchecking <- grid_data(myobs, myresolution = 0.5, myzoom = 4)
+justchecking <- grid_data(lat = obs$decimalLatitude, lon = obs$decimalLongitude, myresolution = 0.5, myzoom = 4)
 # examine the data
 head(justchecking$gridded_data)
 # plot the data
