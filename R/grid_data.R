@@ -7,8 +7,8 @@
 #' 
 #' @return \code{grid_data} returns a data frame containing the number of observations per cell. 
 #' 
-#' @param mydata is an R data.frame. It contains two columns that must be named lat and lon, lon corresponding to each observations.
-#' mydata must have the right column names for the function to work. See example on how to do that.
+#' @param lat is a numerical vector of latitudes for the set of observations.
+#' @param lon is a numerical vector of longitudes for the set of observations.
 #' @param myresolution is the size of the cells the data is to be aggregated over
 #' @param myzoom is the zoom to be applied to plot the gridded data on ggmap map
 #' @param lon_centre is the user-defined longitude the map will be centred on. Default to mean 
@@ -19,19 +19,17 @@
 #' @examples
 #' library(robis)
 #' obs <- occurrence("Gadus morhua", year = 2002)
-#' myobs <- data.frame(obs$decimalLongitude, obs$decimalLatitude)
-#' names(myobs) <- c("lon", "lat")
-#' justchecking <- grid_data(myobs, myresolution = 0.5, myzoom = 4)
+#' justchecking <- grid_data(lat = obs$decimalLatitude, lon = obs$decimalLongitude, myresolution = 0.5, myzoom = 4)
 #' # examine the data
 #' head(justchecking$gridded_data)
 #' # plot the data
 #' justchecking$myplot
 
-grid_data <- function(mydata, myresolution = 0.5, myzoom = 7, lat_centre = NULL, lon_centre = NULL){
-  breakx <- seq(min(floor(mydata$lon)), max(ceiling(mydata$lon)), by = myresolution)
-  breaky <- seq(min(floor(mydata$lat)), max(ceiling(mydata$lat)), by = myresolution)
-  cellx <- cut(mydata$lon, breaks = breakx, labels = breakx[1:(length(breakx)-1)])
-  celly <- cut(mydata$lat, breaks = breaky, labels = breaky[1:(length(breaky)-1)])
+grid_data <- function(lat, lon, myresolution = 0.5, myzoom = 7, lat_centre = NULL, lon_centre = NULL){
+  breakx <- seq(min(floor(lon)), max(ceiling(lon)), by = myresolution)
+  breaky <- seq(min(floor(lat)), max(ceiling(lat)), by = myresolution)
+  cellx <- cut(lon, breaks = breakx, labels = breakx[1:(length(breakx)-1)])
+  celly <- cut(lat, breaks = breaky, labels = breaky[1:(length(breaky)-1)])
   mycoord <- paste(cellx, celly, sep = "_")
   Records <- table(mycoord)
   
@@ -47,7 +45,7 @@ grid_data <- function(mydata, myresolution = 0.5, myzoom = 7, lat_centre = NULL,
   dat$myresolution <- rep(myresolution, nrow(dat))
   
   if(is.null(lat_centre)){
-    mymap <- get_map(location=c(mean(mydata$lon),mean(mydata$lat)),"satellite",zoom=myzoom,scale="auto")
+    mymap <- get_map(location=c(mean(lon),mean(lat)),"satellite",zoom=myzoom,scale="auto")
   }
   else{
     mymap <- get_map(location=c(lon_centre,lat_centre),"satellite",zoom=myzoom,scale="auto")
