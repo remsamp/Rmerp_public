@@ -13,5 +13,6 @@ Imports:
     ggplot2,
     ggmap,
     SPARQL,
-    RSQLite
+    RSQLite,
+    jsonlite
 RoxygenNote: 5.0.1

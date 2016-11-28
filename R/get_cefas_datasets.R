@@ -17,9 +17,8 @@
 #' mydata <- get_cefas_datasets()
 #' 
 #' 
-get_cefas_datasets <- function()
-{
-  myurl <- "https://cefasapp.cefas.co.uk/api/Recordsets"
+get_cefas_datasets <- function(recordset_id){
+  myurl <- paste("https://cefasapp.cefas.co.uk/api/recordsets/", recordset_id, "/fields", sep = "")
   dat <- suppressWarnings(jsonlite::fromJSON(readLines(myurl)))
-  return(list(data_sources = dat, to_download = dat[grep(dat$Name, pattern = ".csv"),]))
+  return(fields = dat)
 }
