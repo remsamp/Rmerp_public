@@ -4,7 +4,7 @@
 \alias{get_cefas_datasets}
 \title{List CEFAS data sources availabe from CEFAS API}
 \usage{
-get_cefas_datasets()
+get_cefas_datasets(recordset_id)
 }
 \value{
 two data.frames data_sources (integral list of recordsets)
