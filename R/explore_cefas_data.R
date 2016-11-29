@@ -19,5 +19,5 @@
 #' 
 #' 
 explore_cefas_data <- function(list_sources = list_data_sets$Name, keyword){
-  dat[grep(dat, pattern = keyword, ignore.case = T)]
+  list_sources[grep(list_sources, pattern = keyword, ignore.case = T)]
 }
