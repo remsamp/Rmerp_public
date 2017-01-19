@@ -25,7 +25,7 @@
 #' library(robis)
 #' #' library(wellknown)
 #' # extract records for area of interest. Provide coordinates for the contour of the area
-#' # going anticlockwise and repeating the initial coordinates at the end to "close" the polygon 
+#' # going clockwise and repeating the initial coordinates at the end to "close" the polygon 
 #' records <- plot_obis("Asterias rubens", area.x = c(-10, -10, 10, 10, -10), area.y = c(40, 60, 60, 40, 40),
 #' myresolution = 0.5, myzoom = 5, gridded = T)
 #' # examine the data
@@ -40,7 +40,7 @@ plot_obis <- function(scientificname, year = NULL, area.x = NULL, area.y = NULL,
   for(i in 1:length(area.x)) list.coord[[i]] <- c(area.x[i], area.y[i])
   if(!is.null(area.x)) {
     mydata <- occurrence(scientificname, year = year, geometry = polygon(list.coord))
-    }
+  }
   if(is.null(area.x)) mydata <- occurrence(scientificname, year = year)
   if(!gridded){
     if(is.null(lat_centre)){
@@ -61,18 +61,18 @@ plot_obis <- function(scientificname, year = NULL, area.x = NULL, area.y = NULL,
     celly <- cut(mydata$decimalLatitude, breaks = breaky, labels = breaky[1:(length(breaky)-1)])
     mycoord <- paste(cellx, celly, sep = "_")
     Records <- table(mycoord)
-  
+    
     inter <- expand.grid(breakx, breaky)
     dat <- data.frame(x0 = inter[, 1], x1 = inter[, 1] + 1, y0 = inter[, 2], y1 = inter[, 2] + 1)
     dat$mycoord <- paste(dat$x0, dat$y0, sep = "_")
-  
+    
     dat$Records <- rep(NA, nrow(dat))
-  
+    
     idx <- match(dat$mycoord, names(Records))
     dat$Records <- as.numeric(Records)[idx]
     dat$id <- c(1: nrow(dat))
     dat$myresolution <- rep(myresolution, nrow(dat))
-  
+    
     if(is.null(lat_centre)){
       mymap <- get_map(location=c(mean(mydata$decimalLongitude),mean(mydata$decimalLatitude)),"satellite",zoom=myzoom,scale="auto")
     }
