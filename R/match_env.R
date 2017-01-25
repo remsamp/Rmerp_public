@@ -13,11 +13,15 @@
 #' @param env_lat is a vector of latitude for the abiotic variable
 #' @param bio_lon is the longitude of the biotic variable
 #' @param bio_lat is the latitude of the biotic variable
+#' @param max_dist is the maximum distance (in km) beyond which
+#' a environmental data point is considered too far to inform conditions
+#' at location of biological records
 #' @param env_variable is an optional vector containing the value of the abiotic variable
 #' 
 #' 
-match_env <- function(env_lon, env_lat, bio_lon, bio_lat, env_variable = NULL){
-  alldist <- sapply(c(1:length(env_lon)), function(i) dist(rbind(c(env_lon[i], env_lat[i]), c(bio_lon, bio_lat))))
-  if(is.null(env_variable)) return(which.min(alldist))
-  else{return(env_variable[which.min(alldist)])}
+match_env <- function(env_lon, env_lat, bio_lon, bio_lat, max_dist = NA, env_variable = NULL){
+  alldist <- sapply(c(1:length(env_lon)), function(i) distm(c(env_lon[i], env_lat[i]), c(bio_lon, bio_lat)))
+  res <- ifelse(!is.null(env_variable), env_variable[which.min(alldist)], which.min(alldist))
+  if(!is.na(max_dist) & res > max_dist) return(NA)
+  else{return(res)}
 }

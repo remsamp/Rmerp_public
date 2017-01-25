@@ -4,7 +4,8 @@
 \alias{match_env}
 \title{Match biotic and abiotic data in space}
 \usage{
-match_env(env_lon, env_lat, bio_lon, bio_lat, env_variable = NULL)
+match_env(env_lon, env_lat, bio_lon, bio_lat, max_dist = NA,
+  env_variable = NULL)
 }
 \arguments{
 \item{env_lon}{is a vector of longitudes for the abiotic variable}
@@ -14,6 +15,10 @@ match_env(env_lon, env_lat, bio_lon, bio_lat, env_variable = NULL)
 \item{bio_lon}{is the longitude of the biotic variable}
 
 \item{bio_lat}{is the latitude of the biotic variable}
+
+\item{max_dist}{is the maximum distance (in km) beyond which
+a environmental data point is considered too far to inform conditions
+at location of biological records}
 
 \item{env_variable}{is an optional vector containing the value of the abiotic variable}
 }
