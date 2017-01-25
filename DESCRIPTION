@@ -14,5 +14,6 @@ Imports:
     ggmap,
     SPARQL,
     RSQLite,
-    jsonlite
+    jsonlite,
+    geosphere
 RoxygenNote: 5.0.1
